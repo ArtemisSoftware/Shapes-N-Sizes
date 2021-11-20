@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalContext
@@ -67,5 +68,54 @@ fun FacebookIcon() {
         )
 
         drawContext.canvas.nativeCanvas.drawText("f", center.x + 25, center.y + 90, paint)
+    }
+}
+
+
+@Preview(showBackground = false)
+@Composable
+fun MessengerIcon() {
+
+    Canvas(
+        modifier = Modifier
+            .size(100.dp)
+            .padding(16.dp)
+    ) {
+
+        val colors = listOf(Color(0xFF02b8f9), Color(0xFF0277fe))
+
+        val trianglePath = Path().let {
+            it.moveTo(this.size.width * .20f, this.size.height * .77f)
+            it.lineTo(this.size.width * .20f, this.size.height * 0.95f)
+            it.lineTo(this.size.width * .37f, this.size.height * 0.86f)
+            it.close()
+            it
+        }
+
+
+        val electricPath = Path().let {
+            it.moveTo(this.size.width * .20f, this.size.height * 0.60f)
+            it.lineTo(this.size.width * .45f, this.size.height * 0.35f)
+            it.lineTo(this.size.width * 0.56f, this.size.height * 0.46f)
+            it.lineTo(this.size.width * 0.78f, this.size.height * 0.35f)
+            it.lineTo(this.size.width * 0.54f, this.size.height * 0.60f)
+            it.lineTo(this.size.width * 0.43f, this.size.height * 0.45f)
+            it.close()
+            it
+        }
+
+        drawOval(
+            Brush.verticalGradient(colors = colors),
+            size = Size(this.size.width, this.size.height * 0.95f)
+        )
+
+
+        drawPath(
+            path = trianglePath,
+            Brush.verticalGradient(colors = colors),
+            style = Stroke(width = 15f, cap = StrokeCap.Round)
+        )
+
+        drawPath(path = electricPath, color = Color.White)
     }
 }
