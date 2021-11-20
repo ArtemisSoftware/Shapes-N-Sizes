@@ -119,3 +119,55 @@ fun MessengerIcon() {
         drawPath(path = electricPath, color = Color.White)
     }
 }
+
+
+@Preview(showBackground = false)
+@Composable
+fun GooglePhotosIcon() {
+
+    Canvas(
+        modifier = Modifier
+            .size(100.dp)
+            .padding(16.dp)
+    ) {
+
+        drawArc(
+            color = Color(0xFFf04231),
+            size = Size(size.width * .50f, size.height * .50f),
+            startAngle = -90f,
+            sweepAngle = 180f,
+            useCenter = true,
+            topLeft = Offset(size.width * .25f, 0f)
+
+        )
+
+        drawArc(
+            color = Color(0xFF4385f7),
+            size = Size(size.width * .50f, size.height * .50f),
+            startAngle = 0f,
+            sweepAngle = 180f,
+            useCenter = true,
+            topLeft = Offset(size.width * .50f, size.height * .25f)
+
+        )
+        drawArc(
+            color = Color(0xFF30a952),
+            size = Size(size.width * .50f, size.height * .50f),
+            startAngle = 0f,
+            sweepAngle = -180f,
+            useCenter = true,
+            topLeft = Offset(0f, size.height * .25f)
+        )
+
+        drawArc(
+            color = Color(0xFFffbf00),
+            size = Size(size.width * .50f, size.height * .50f),
+            startAngle = -90f,
+            sweepAngle = -180f,
+            useCenter = true,
+            topLeft = Offset(size.width * .25f, size.height * .50f)
+
+        )
+
+    }
+}
