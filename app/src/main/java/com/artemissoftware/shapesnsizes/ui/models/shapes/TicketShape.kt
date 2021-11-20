@@ -1,4 +1,4 @@
-package com.artemissoftware.shapesnsizes.ui.models
+package com.artemissoftware.shapesnsizes.ui.models.shapes
 
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size

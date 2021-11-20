@@ -18,8 +18,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.artemissoftware.shapesnsizes.ui.models.TicketShape
-import com.artemissoftware.shapesnsizes.ui.models.drawTicketPath
+import com.artemissoftware.shapesnsizes.ui.models.shapes.TicketShape
+import com.artemissoftware.shapesnsizes.ui.models.shapes.drawTicketPath
 
 @Composable
 fun CinemaTicket(modifier: Modifier) {
