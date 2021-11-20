@@ -171,3 +171,82 @@ fun GooglePhotosIcon() {
 
     }
 }
+
+
+
+@Preview(showBackground = false)
+@Composable
+fun iOSWeatherAppIcon() {
+
+    Canvas(
+        modifier = Modifier
+            .size(100.dp)
+            .padding(16.dp)
+    ) {
+
+        val backgroundColor = listOf(Color(0xFF2078EE), Color(0xFF74E6FE))
+        val sunColor = listOf(Color(0xFFFFC200), Color(0xFFFFE100))
+
+        val width = size.width
+        val height = size.height
+
+        val path = Path().apply {
+            moveTo(width.times(.76f), height.times(.72f))
+            cubicTo(
+                width.times(.93f), height.times(.72f),
+                width.times(.98f), height.times(.41f),
+                width.times(.76f), height.times(.40f)
+            )
+            cubicTo(
+                width.times(.75f), height.times(.21f),
+                width.times(.35f), height.times(.21f),
+                width.times(.38f), height.times(.50f)
+            )
+            cubicTo(
+                width.times(.25f), height.times(.50f),
+                width.times(.20f), height.times(.69f),
+                width.times(.41f), height.times(.72f)
+            )
+            close()
+        }
+
+//        val guidePath = Path().let {
+//            it.moveTo(width.times(.76f), height.times(.72f))
+//            it.lineTo(width.times(.93f), height.times(.72f))
+//            it.lineTo(width.times(.98f), height.times(.41f))
+//            it.lineTo(width.times(.76f), height.times(.40f))
+//
+//            it.lineTo(width.times(.75f), height.times(.21f))
+//            it.lineTo(width.times(.35f), height.times(.21f))
+//            it.lineTo(width.times(.38f), height.times(.50f))
+//
+//            it.lineTo(width.times(.25f), height.times(.50f))
+//            it.lineTo(width.times(.20f), height.times(.69f))
+//            it.lineTo(width.times(.41f), height.times(.72f))
+//
+//            it.close()
+//            it
+//        }
+
+
+
+        drawRoundRect(
+            brush = Brush.verticalGradient(backgroundColor),
+            cornerRadius = CornerRadius(50f, 50f),
+        )
+
+        drawCircle(
+            brush = Brush.verticalGradient(sunColor),
+            radius = width.times(.17f),
+            center = Offset(width.times(.35f), height.times(.35f))
+        )
+
+        drawPath(path = path, color = Color.White.copy(alpha = .90f))
+
+//        drawPath(
+//            path = guidePath,
+//            color = Color.Red,
+//            style = Stroke(width = 1f, cap = StrokeCap.Round)
+//        )
+    }
+}
