@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.artemissoftware.shapesnsizes.ui.composables.Greeting
 import com.artemissoftware.shapesnsizes.ui.theme.ShapesNSizesTheme
 
 class MainActivity : ComponentActivity() {
@@ -35,26 +36,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun Greeting() {
-    Text(
-        text = "Lets test shapes and sizes",
-        style = typography.h3.copy(color = Color.Blue),
-        textAlign = TextAlign.Center,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(32.dp)
-            .border(width = 4.dp, color = Color.Blue, CutCornerShape(32.dp))
-            .graphicsLayer {
-                shadowElevation = 8.dp.toPx()
-                shape = CutCornerShape(32.dp)
-                clip = true
-            }
-            .background(color = Color.Green)
-            .padding(32.dp)
 
-    )
-}
 
 @Preview(showBackground = true)
 @Composable
