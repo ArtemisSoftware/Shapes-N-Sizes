@@ -12,8 +12,6 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.SpanStyle
@@ -22,7 +20,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.artemissoftware.shapesnsizes.ui.composables.MessengerIcon
+import com.artemissoftware.shapesnsizes.ui.composables.OverlayCircle
+import com.artemissoftware.shapesnsizes.ui.composables.FancyCard
 import com.artemissoftware.shapesnsizes.ui.theme.ShapesNSizesTheme
 
 class MainActivity : ComponentActivity() {
@@ -32,7 +31,7 @@ class MainActivity : ComponentActivity() {
             ShapesNSizesTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    //CardDemo()
+
                 }
             }
         }
@@ -282,6 +281,8 @@ fun DefaultPreview() {
 
             CardDemo()
             CardDemo_V2()
+
+
 
         }
 

@@ -20,7 +20,7 @@ import com.artemissoftware.shapesnsizes.ui.models.shapes.drawTrianglePath
 
 @Composable
 @Preview
-fun Circle(modifier: Modifier = Modifier.size(50.dp)) {
+fun OverlayCircle(modifier: Modifier = Modifier.size(50.dp)) {
     Canvas(modifier = modifier, onDraw = {
         val size = 50.dp.toPx()
         drawCircle(
