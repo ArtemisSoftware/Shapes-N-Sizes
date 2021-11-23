@@ -3,6 +3,7 @@ package com.artemissoftware.shapesnsizes.ui.composables
 import android.graphics.Paint
 import android.graphics.Typeface
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -248,5 +249,17 @@ fun iOSWeatherAppIcon() {
 //            color = Color.Red,
 //            style = Stroke(width = 1f, cap = StrokeCap.Round)
 //        )
+    }
+}
+
+
+@Composable
+fun IconsForApps(){
+    Column {
+        FacebookIcon()
+        InstagramIcon()
+        iOSWeatherAppIcon()
+        GooglePhotosIcon()
+        MessengerIcon()
     }
 }

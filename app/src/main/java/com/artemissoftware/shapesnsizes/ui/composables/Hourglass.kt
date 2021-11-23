@@ -1,5 +1,7 @@
 package com.artemissoftware.shapesnsizes.ui.composables
 
+import androidx.compose.animation.animateColor
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -7,10 +9,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.foundation.Canvas
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
@@ -25,12 +29,15 @@ val grey = Color(0xFF181818)
 val black = Color(0xFF000000)
 
 
-@Preview(showBackground = false)
+//@Preview(showBackground = false)
 @Composable
-fun DrawRoundRectangle() {
+fun DrawRoundRectangle(scale: Float, lineColor: Color = grey900) {
 
     Canvas(
-        modifier = Modifier.fillMaxWidth().height(60.dp)
+        modifier = Modifier.fillMaxWidth().height(60.dp).graphicsLayer {
+            scaleX = scale
+            scaleY = scale
+        }
     ) {
         val canvasSize = size
         val canvasWidth = size.width
@@ -39,7 +46,7 @@ fun DrawRoundRectangle() {
         drawRoundRect(
             size = canvasSize / 2F,
             cornerRadius = CornerRadius(60F, 60F),
-            color = grey900,
+            color = lineColor,
             style = Stroke(width = 16F),
             topLeft = Offset(
                 x = canvasWidth / 4F,
@@ -51,29 +58,37 @@ fun DrawRoundRectangle() {
 }
 
 
-@Preview(showBackground = false)
+//@Preview(showBackground = false)
 @Composable
-fun DrawLines() {
+fun DrawLines(scale: Float, lineColor: Color = grey900) {
 
     Canvas(
         modifier = Modifier.fillMaxWidth().height(180.dp)
+            .graphicsLayer {
+                scaleX = scale
+                scaleY = scale
+            }
     ) {
+
         // Left top
-        drawSingleLine(340f, -20f, 340f, 140f, this)
+        drawSingleLine(340f, -20f, 340f, 140f, lineColor, drawScope = this)
         // Left top diagonal
-        drawSingleLine(340f, 140f, 460f, 260f, this)
+        drawSingleLine(340f, 140f, 460f, 260f, lineColor, drawScope = this)
         // Left bottom diagonal
-        drawSingleLine(460f, 260f, 340f, 380f, this)
+        drawSingleLine(460f, 260f, 340f, 380f, lineColor, drawScope = this)
         // Left bottom
-        drawSingleLine(340f, 380f, 340f, 540f, this)
+        drawSingleLine(340f, 380f, 340f, 600f, lineColor, drawScope = this)
+
+
+
         // Right bottom
-        drawSingleLine(740f, 380f, 740f, 540f, this)
+        drawSingleLine(740f, 380f, 740f, 600f, lineColor, drawScope = this)
         // Right top diagonal
-        drawSingleLine(740f, 140f, 620f, 260f, this)
+        drawSingleLine(740f, 140f, 620f, 260f, lineColor, drawScope = this)
         // Right bottom diagonal
-        drawSingleLine(620f, 260f, 740f, 380f, this)
+        drawSingleLine(620f, 260f, 740f, 380f, lineColor, drawScope = this)
         // Right top
-        drawSingleLine(740f, -20f, 740f, 140f, this)
+        drawSingleLine(740f, -20f, 740f, 140f, lineColor, drawScope = this)
     }
 
 }
@@ -84,17 +99,56 @@ fun drawSingleLine(
     startY: Float,
     endX: Float,
     endY: Float,
+    lineColor: Color = grey900,
     drawScope: DrawScope
 ) {
     drawScope.drawLine(
         start = Offset(startX, startY),
         end = Offset(endX, endY),
-        color = grey900,
+        color = lineColor,
         strokeWidth = 16F,
         cap = StrokeCap.Round
     )
 }
 
+
+@Composable
+fun colorShapeTransition(
+    initialValue: Color,
+    targetValue: Color,
+    durationMillis: Int
+): Color {
+    val infiniteTransition = rememberInfiniteTransition()
+    val color by infiniteTransition.animateColor(
+        initialValue = initialValue,
+        targetValue = targetValue,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis, easing = FastOutSlowInEasing),
+            repeatMode = RepeatMode.Restart
+        )
+    )
+
+    return color
+}
+
+@Composable
+fun scaleShapeTransition(
+    initialValue: Float,
+    targetValue: Float,
+    durationMillis: Int
+): Float {
+    val infiniteTransition = rememberInfiniteTransition()
+    val scale: Float by infiniteTransition.animateFloat(
+        initialValue = initialValue,
+        targetValue = targetValue,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis),
+            repeatMode = RepeatMode.Restart
+        )
+    )
+
+    return scale
+}
 
 @Preview(showBackground = false)
 @Composable
@@ -105,9 +159,13 @@ fun Hourglass() {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        DrawRoundRectangle()
-        DrawLines()
-        DrawRoundRectangle()
+
+        val lineColor = colorShapeTransition(grey900, grey100, 2000)
+        val scale = scaleShapeTransition(0.1f, 1f, 2000)
+
+        DrawRoundRectangle(scale, lineColor)
+        DrawLines(scale, lineColor)
+        DrawRoundRectangle(scale, lineColor)
     }
 }
 
