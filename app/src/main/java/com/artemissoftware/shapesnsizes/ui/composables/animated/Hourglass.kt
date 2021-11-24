@@ -9,6 +9,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.foundation.Canvas
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
@@ -31,7 +35,7 @@ val black = Color(0xFF000000)
 
 //@Preview(showBackground = false)
 @Composable
-fun DrawRoundRectangle(scale: Float, lineColor: Color = grey900) {
+private fun DrawRoundRectangle(scale: Float, lineColor: Color = grey900) {
 
     Canvas(
         modifier = Modifier.fillMaxWidth().height(60.dp).graphicsLayer {
@@ -169,4 +173,23 @@ fun Hourglass() {
     }
 }
 
+@Composable
+fun HourglassAnimation() {
 
+    Surface(
+        color = MaterialTheme.colors.background
+    ) {
+        Scaffold(
+            topBar = {
+                Text(
+                    text = "Hourglass Animation",
+                    color = MaterialTheme.colors.onBackground,
+                    style = MaterialTheme.typography.h5,
+                    modifier = Modifier.padding(16.dp)
+                )
+            }
+        ) {
+            Hourglass()
+        }
+    }
+}
