@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.artemissoftware.shapesnsizes.ui.composables.animated.LineMovement
+import com.artemissoftware.shapesnsizes.ui.composables.graphs.LineChart
 import com.artemissoftware.shapesnsizes.ui.theme.ShapesNSizesTheme
 
 class MainActivity : ComponentActivity() {
@@ -24,7 +25,8 @@ class MainActivity : ComponentActivity() {
 
                 //HourglassAnimation()
 
-                LineMovement()
+                //LineMovement()
+                LineChart()
             }
         }
     }
