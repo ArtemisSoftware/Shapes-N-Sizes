@@ -5,9 +5,12 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.artemissoftware.shapesnsizes.ui.composables.animated.LineMovement
 import com.artemissoftware.shapesnsizes.ui.composables.graphs.LineChart
+import com.artemissoftware.shapesnsizes.ui.composables.graphs.models.DataPoints
+import com.artemissoftware.shapesnsizes.ui.composables.graphs.models.LineGraph4
 import com.artemissoftware.shapesnsizes.ui.theme.ShapesNSizesTheme
 
 class MainActivity : ComponentActivity() {
@@ -26,7 +29,8 @@ class MainActivity : ComponentActivity() {
                 //HourglassAnimation()
 
                 //LineMovement()
-                LineChart()
+                //LineChart()
+                LineGraph4(listOf(DataPoints.dataPoints1, DataPoints.dataPoints2), Modifier)
             }
         }
     }
