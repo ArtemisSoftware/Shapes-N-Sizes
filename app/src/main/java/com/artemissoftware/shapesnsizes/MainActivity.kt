@@ -11,6 +11,7 @@ import com.artemissoftware.shapesnsizes.ui.composables.animated.LineMovement
 import com.artemissoftware.shapesnsizes.ui.composables.graphs.LineChart
 import com.artemissoftware.shapesnsizes.ui.composables.graphs.models.DataPoints
 import com.artemissoftware.shapesnsizes.ui.composables.graphs.models.LineGraph4
+import com.artemissoftware.shapesnsizes.ui.composables.graphs.neochart.NeoLineCard
 import com.artemissoftware.shapesnsizes.ui.theme.ShapesNSizesTheme
 
 class MainActivity : ComponentActivity() {
@@ -30,7 +31,12 @@ class MainActivity : ComponentActivity() {
 
                 //LineMovement()
                 //LineChart()
-                LineGraph4(listOf(DataPoints.dataPoints1, DataPoints.dataPoints2), Modifier)
+                //LineGraph4(listOf(DataPoints.dataPoints1, DataPoints.dataPoints2), Modifier)
+                NeoLineCard(
+                    modifier = Modifier,
+                    lines = listOf(DataPoints.dataPoints2, DataPoints.dataPoints2),
+                    showGraphXAxis = true, showGraphYAxis = true
+                )
             }
         }
     }

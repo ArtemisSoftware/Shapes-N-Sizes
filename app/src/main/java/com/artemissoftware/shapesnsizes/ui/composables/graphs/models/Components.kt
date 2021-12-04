@@ -6,12 +6,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
-import androidx.compose.ui.graphics.BlendMode
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.PathEffect
-import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.DrawStyle
 import androidx.compose.ui.graphics.drawscope.Fill
@@ -133,6 +128,7 @@ data class LinePlot(
         val style: DrawStyle = Fill,
         val colorFilter: ColorFilter? = null,
         val blendMode: BlendMode = DrawScope.DefaultBlendMode,
+        val onlyLastPoint: Boolean = false,
         val draw: DrawScope.(Offset, DataPoint) -> Unit = { center, _ ->
             drawCircle(
                 color,
@@ -214,11 +210,30 @@ data class LinePlot(
     data class AreaUnderLine(
         val color: Color = Color.Blue,
         val alpha: Float = 0.1f,
+        val gradientColors: List<Color> = listOf(),
         val style: DrawStyle = Fill,
         val colorFilter: ColorFilter? = null,
         val blendMode: BlendMode = DrawScope.DefaultBlendMode,
         val draw: DrawScope.(Path) -> Unit = { path ->
-            drawPath(path, color, alpha, style, colorFilter, blendMode)
+
+
+            if(gradientColors.isEmpty()){
+                drawPath(path, color, alpha, style, colorFilter, blendMode)
+            }
+            else {
+                drawPath(
+                    path,
+                    brush = Brush.verticalGradient(
+                        startY = 0.0f,
+                        endY = size.width/4,
+                        colors = gradientColors
+                    ),
+                    alpha,
+                    style,
+                    colorFilter,
+                    blendMode
+                )
+            }
         }
     )
 

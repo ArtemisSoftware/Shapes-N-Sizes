@@ -39,12 +39,12 @@ internal fun LineGraph4(lines: List<List<DataPoint>>, modifier: Modifier) {
     }) {
         val xOffset = remember { mutableStateOf(0f) }
         val cardWidth = remember { mutableStateOf(0) }
-        val visibility = remember { mutableStateOf(true) }
+        val visibility = remember { mutableStateOf(false) }
         val points = remember { mutableStateOf(listOf<DataPoint>()) }
         val density = LocalDensity.current
 
         Box(Modifier.height(150.dp)) {
-            //if (visibility.value) {
+            if (visibility.value) {
                 Surface(
                     modifier = Modifier
                         .width(200.dp)
@@ -76,7 +76,7 @@ internal fun LineGraph4(lines: List<List<DataPoint>>, modifier: Modifier) {
                 }
 
             }
-       // }
+        }
         val padding = 16.dp
         MaterialTheme(colors = MaterialTheme.colors.copy(surface = Color.White)) {
             LineGraph(

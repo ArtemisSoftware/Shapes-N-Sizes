@@ -118,4 +118,16 @@ object DataPoints {
         DataPoint(1.6f, 2f),
         DataPoint(1.7f, 0f),
     )
+
+
+    val dataPoints7 = listOf(
+        DataPoint(0f, 0f),
+        DataPoint(1f, 0f),
+        DataPoint(2f, 25f),
+        DataPoint(3f, 75f),
+        DataPoint(4f, 120f),
+    )
+
+
+
 }
