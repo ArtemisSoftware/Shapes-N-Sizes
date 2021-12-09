@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.artemissoftware.shapesnsizes.ui.composables.ShimmerCard
 import com.artemissoftware.shapesnsizes.ui.composables.animated.LineMovement
 import com.artemissoftware.shapesnsizes.ui.composables.graphs.LineChart
 import com.artemissoftware.shapesnsizes.ui.composables.graphs.models.DataPoints
@@ -32,11 +33,13 @@ class MainActivity : ComponentActivity() {
                 //LineMovement()
                 //LineChart()
                 //LineGraph4(listOf(DataPoints.dataPoints1, DataPoints.dataPoints2), Modifier)
-                NeoLineCard(
-                    modifier = Modifier,
-                    lines = listOf(DataPoints.dataPoints2, DataPoints.dataPoints2),
-                    showGraphXAxis = true, showGraphYAxis = true
-                )
+//                NeoLineCard(
+//                    modifier = Modifier,
+//                    lines = listOf(DataPoints.dataPoints2, DataPoints.dataPoints2),
+//                    showGraphXAxis = true, showGraphYAxis = true
+//                )
+
+                ShimmerCard()
             }
         }
     }

@@ -57,11 +57,30 @@ fun NeoLineCard(
                 totalWidth.value = it.size.width
             }) {
 
-                NeoLineChart(
-                    modifier = modifier,
-                    lines = lines,
-                    showGraphXAxis = showGraphXAxis,
-                    showGraphYAxis = showGraphYAxis
+                val plot = LinePlot(
+                    listOf(
+                        LinePlot.Line(
+                            DataPoints.dataPoints3,
+                            LinePlot.Connection(Color.Green, 2.dp),
+                            null,
+                            LinePlot.Highlight { center ->
+                                val color = Color.Blue
+                                drawCircle(color, 9.dp.toPx(), center, alpha = 0.3f)
+                                drawCircle(color, 6.dp.toPx(), center)
+                                drawCircle(Color.White, 3.dp.toPx(), center)
+                            },
+                            LinePlot.AreaUnderLine(gradientColors = listOf(Color.Blue, Color.White))
+                        ),
+                    ),
+                )
+
+
+                NeoLineChart_Revolution(
+                    modifier = Modifier,
+                    plot = plot,
+                    chartHeight = 100.dp,
+                    showGraphXAxis = false,
+                    showGraphYAxis = false
                 )
 
             }
@@ -241,17 +260,6 @@ private fun Preview() {
 
         val plot = LinePlot(
             listOf(
-//                LinePlot.Line(
-//                    lines[1],
-//                    LinePlot.Connection(Color.Gray, 2.dp),
-//                    null,
-//                    LinePlot.Highlight { center ->
-//                        val color = Color.Gray
-//                        drawCircle(color, 9.dp.toPx(), center, alpha = 0.3f)
-//                        drawCircle(color, 6.dp.toPx(), center)
-//                        drawCircle(Color.White, 3.dp.toPx(), center)
-//                    },
-//                ),
                 LinePlot.Line(
                     DataPoints.dataPoints3,
                     LinePlot.Connection(Color.Green, 2.dp),
@@ -315,11 +323,11 @@ private fun Preview() {
         Spacer(Modifier.height(4.dp))
 
 
-//        NeoLineCard(
-//            modifier = Modifier,
-//            lines = listOf(DataPoints.dataPoints2, DataPoints.dataPoints2),
-//            showGraphXAxis = true, showGraphYAxis = true
-//        )
+        NeoLineCard(
+            modifier = Modifier,
+            lines = listOf(DataPoints.dataPoints2, DataPoints.dataPoints2),
+            showGraphXAxis = false, showGraphYAxis = false
+        )
     }
 
 }
